@@ -1,0 +1,39 @@
+version: '3'
+services:
+  # frontend:
+  backend:
+    container_name: app_backend
+    build: ./backend
+    ports:
+      - 3001:3001
+    platform: linux/x86_64
+    working_dir: /app-backend
+    command: dev
+    volumes:
+      - ./backend/src:/app-backend/src
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file:
+      - ./.env
+    healthcheck:
+      test: curl --fail http://localhost:3001/health || exit 1
+      timeout: 15s
+      retries: 5
+    restart: 'on-failure'
+
+  database:
+    image: mysql:8.0.21
+    container_name: database
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    env_file:
+      - ./.env
+    restart: 'on-failure'
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 15s
+      retries: 5
+    cap_add:
+      - SYS_NICE
