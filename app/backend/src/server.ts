@@ -3,11 +3,11 @@ import express from 'express';
 import { json } from 'body-parser';
 import router from './routes';
 
-const app = express();
-app.use(json());
+const server = express();
+server.use(json());
 
-app.use(router.healthRouter);
+server.use(router.healthRouter);
 
-app.listen(3001, () => {
+server.listen(3001, () => {
   console.log('server running on port 3001');
 });
