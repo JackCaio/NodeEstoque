@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import Sequelize, { DATE, INTEGER, Model, STRING } from 'sequelize';
+import Sequelize, { DATE, DOUBLE, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
 import Produto from './ProdutoModel';
 import ProdutoLote from './ProdutoLote';
@@ -11,6 +11,7 @@ class Lote extends Model {
   public notaFiscal!: string;
   public dataCompra!: Date;
   public dataEntrada!: Date;
+  public valorCompra!: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -41,12 +42,17 @@ Lote.init(
       type: DATE,
       allowNull: true,
     },
+    valorCompra: {
+      type: DOUBLE,
+      allowNull: true,
+      defaultValue: 0,
+    },
   },
   {
     underscored: true,
     sequelize: db,
-    modelName: 'lote',
     timestamps: true,
+    tableName: 'lotes',
   },
 );
 

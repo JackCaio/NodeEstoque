@@ -28,8 +28,8 @@ ProdutoFornecedor.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'produtoFornecedor',
     timestamps: false,
+    tableName: 'produto_fornecedor',
   },
 );
 

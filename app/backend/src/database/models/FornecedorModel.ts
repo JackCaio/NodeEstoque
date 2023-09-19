@@ -33,8 +33,8 @@ Fornecedor.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'fornecedor',
     timestamps: true,
+    tableName: 'fornecedores',
   },
 );
 

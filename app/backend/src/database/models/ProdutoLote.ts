@@ -1,10 +1,9 @@
-import { DOUBLE, INTEGER, Model } from 'sequelize';
+import { INTEGER, Model } from 'sequelize';
 import db from '.';
 
 class ProdutoLote extends Model {
   public idProduto!: number;
   public idLote!: number;
-  public valorCompra!: number;
 }
 
 ProdutoLote.init(
@@ -19,17 +18,12 @@ ProdutoLote.init(
       allowNull: false,
       primaryKey: true,
     },
-    valorCompra: {
-      type: DOUBLE,
-      allowNull: false,
-      defaultValue: 0,
-    },
   },
   {
     underscored: true,
     sequelize: db,
-    modelName: 'produtoLote',
     timestamps: false,
+    tableName: 'produtos_lote',
   },
 );
 

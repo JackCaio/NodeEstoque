@@ -9,7 +9,7 @@
     "predev": "npm run build && npm run db:reset",
     "dev": "ts-node-dev src/server.ts",
     "predb:reset": "npm run build",
-    "db:reset": "npx sequelize db:drop && npx sequelize db:create",
+    "db:reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
     "prestart": "npm run build && npm run db:reset",
     "start": "node ./build/server.js",
     "lint": "eslint ./src --ext .ts",
